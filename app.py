@@ -1,7 +1,10 @@
 import numpy as np
+import lightgbm as lgb 
+import catboost  
 import pickle
 import streamlit as st
 from PIL import Image
+
 
 # Load the trained model
 with open("gradient_boost.pkl", "rb") as pickle_in:
