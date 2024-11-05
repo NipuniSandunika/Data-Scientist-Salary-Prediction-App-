@@ -1,6 +1,4 @@
 import numpy as np
-import lightgbm as lgb 
-import catboost  
 import pickle
 import streamlit as st
 from PIL import Image
