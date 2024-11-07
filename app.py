@@ -1,14 +1,10 @@
-import streamlit as st
-import pandas as pd
 import numpy as np
-import pickle
-import os
+import joblib
+import streamlit as st
+from PIL import Image
 
-
-
-# Load the trained model
-with open("gradient_boost.pkl", "rb") as pickle_in:
-    gradient_boost_model = pickle.load(pickle_in)
+# Load the trained model with joblib
+gradient_boost_model = joblib.load("gradient_boost.joblib")
 
 def predict_salary_category(features):
     """Function to predict the salary category using the Gradient Boosting model."""
@@ -25,7 +21,7 @@ def main():
     st.markdown(html_temp, unsafe_allow_html=True)
 
     # Input fields for each feature
-    work_year = st.selectbox("Work Year", [2021, 2022, 2023, 2024])
+    work_year = st.number_input("Work Year", min_value=2024, step=1)
     job_category = st.selectbox("Job Category", options=["Data Engineering", "Data Science", "Machine Learning", "Data Architecture", "Management", "Other"])
     experience_level = st.selectbox("Experience Level", options=["Entry", "Mid-Level", "Senior", "Executive"])
     employment_type = st.selectbox("Employment Type", options=["Contract", "Freelance", "Full Time", "Part Time"])
@@ -64,11 +60,10 @@ def main():
         job_category_map[job_category]
     ]
     
-# When the 'Predict' button is clicked
+    # When the 'Predict' button is clicked
     if st.button("Predict"):
         result = predict_salary_category(features)
         st.markdown(f"<p style='color:red;'>The predicted salary category is: {salary_category_map[result]}</p>", unsafe_allow_html=True)
-
 
 if __name__ == '__main__':
     main()
