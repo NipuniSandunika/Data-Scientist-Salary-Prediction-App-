@@ -23,7 +23,7 @@ def main():
     st.markdown(html_temp, unsafe_allow_html=True)
 
     # Input fields for each feature
-    work_year = st.number_input("Work Year", min_value=2024, step=1)
+    work_year = st.selectbox("Work Year", [2021, 2022, 2023, 2024])
     job_category = st.selectbox("Job Category", options=["Data Engineering", "Data Science", "Machine Learning", "Data Architecture", "Management", "Other"])
     experience_level = st.selectbox("Experience Level", options=["Entry", "Mid-Level", "Senior", "Executive"])
     employment_type = st.selectbox("Employment Type", options=["Contract", "Freelance", "Full Time", "Part Time"])
